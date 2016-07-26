@@ -1,0 +1,26 @@
+<div class="container">
+<h3>Picture index
+	<%= link_to 'new picture', new_picture_path, class: 'btn btn-default f-right' %>
+</h3>
+	<div class="row-fluid">
+<% if @pictures %>
+<% @pictures.each do |x| %>
+<div class="picture-container">
+	<div class="row-fluid">
+	<h3 class="col-xs-12 pic-title">
+		<%= x.title %>		
+	</h3>
+		
+<img src="<%= x.url%>" class="uploaded">
+	</div>
+	<div class="row-fluid" style="width:100%;display:inline-flex;">
+	<!-- <a href="/pictures/<%= x.id %>/edit">edit picture</a> -->
+	<%= link_to 'edit picture',edit_picture_path(x.id), class: "btn btn-gzn f-l" %>
+	<%= link_to 'delete picture',pictures_delete_path(x.id), class: "btn btn-gzn f-r" %>
+	<!-- <a href="">delete picture</a> -->
+	</div>
+	</div>
+<% end %>
+<% end %>
+</div>
+</div>

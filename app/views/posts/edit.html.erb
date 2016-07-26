@@ -1,0 +1,8 @@
+<h1>Edit Post</h1>
+<%= form_for @post do |f| %>
+  <%= f.text_area :title, :id => 'update_post_input' %>
+  <%= f.text_area :content, :id => 'update_post_input' %>
+  <%= f.submit "Confirm Post", :id => 'update_post_submit', :class => 'btn btn-style'%>
+  <br>
+  <%= f.submit "cancel", :id => 'create_post_cancel', :class => 'btn btn-style' %>
+<% end %>

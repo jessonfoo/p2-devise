@@ -1,0 +1,15 @@
+<h1>Edit Picture</h1>
+<% if @picture %>
+<div class="container">
+	<div class="row-fluid">
+	<h1>
+		<%= @picture.title %>		
+	</h1>
+		
+<img src="<%= @picture.url%>">
+	<%= link_to 'show picture',pictures_show_path(@picture.id), class: "btn btn-default" %>
+	<%= link_to 'delete picture',pictures_delete_path(@picture.id), class: "btn btn-default" %>
+	<!-- <a href="">delete picture</a> -->
+	</div>
+</div>
+<% end %>

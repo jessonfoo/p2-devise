@@ -1,0 +1,24 @@
+<div class="container">
+	<div class="row-fluid">
+		<%= form_for @picture do |f| %>
+			<div class="row-fluid">
+		  <%= f.label :title %>
+		  <%= f.text_field :title, :id => 'create_picture_input' %>
+		  <%= f.hidden_field :url, :id=>'create_picture_url' %>
+			</div>
+			<div class="row-fluid">
+				<div class="col-md-3">
+				  <%= f.submit "Submit picture", :id => 'create_picture_submit', :class => 'btn btn-style'%>
+					
+				</div>
+				<div class="col-md-3">
+				  <%= f.submit "cancel", :id => 'create_picture_cancel', :class => 'btn btn-style' %>
+				</div>
+			</div>
+		<% end %>
+
+	</div>
+</div>
+
+  <input type="filepicker" name="url" data-fp-apikey="AMhKGKdexSpC0WsOfZNejz" onchange="alert(event.fpfile.url)">
+  <script type="text/javascript" src="//api.filestackapi.com/filestack.js"></script>

@@ -1,0 +1,18 @@
+<h1>
+Show Picture
+	<%= link_to 'new picture', new_picture_path, class: 'btn btn-default f-right' %>
+</h1>
+<% if @picture %>
+<div class="container">
+	<div class="row-fluid">
+	<h1>
+		<%= @picture.title %>		
+	</h1>
+		
+<img src="<%= @picture.url%>" style="max-width:100%;">
+	<%= link_to 'edit picture',edit_picture_path(@picture.id), class: "btn btn-default" %>
+	<%= link_to 'delete picture',pictures_delete_path(@picture.id), class: "btn btn-default" %>
+	<!-- <a href="">delete picture</a> -->
+	</div>
+</div>
+<% end %>

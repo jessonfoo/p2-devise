@@ -1,0 +1,15 @@
+<h1>Post index</h1>
+<% if @posts %>
+<div class="container">
+<% @posts.each do |x| %>
+	<div class="row-fluid">
+	<h1>
+		<%= x.title %>		
+	</h1>
+		
+		<%= x.content%>		
+	<a href="/posts/<%= x.id %>/edit">edit post</a>
+	</div>
+<% end %>
+</div>
+<% end %>
