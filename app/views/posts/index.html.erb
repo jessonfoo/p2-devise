@@ -3,14 +3,11 @@
 	<%= link_to 'new post', new_post_path, class: 'btn btn-default f-right' %>
 <div class="container grid all-posts-grid" id="wrapper">
 <div id="columns">
-	<% 
-console
-	%>
 	<% if @posts %>
 	<% @posts.each do |x| %>
 
 	<div class="post-container item">
-		<div class="row-fluid">
+	<div class="row-fluid">
 			<h3 class="col-xs-4 pic-title">
 				<%= x.title %>		
 			</h3>
