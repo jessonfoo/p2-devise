@@ -27,6 +27,7 @@ class PostsController < ApplicationController
 
   def new
   	@post = Post.new
+    render :new
     # render json: @post 
   end
   def edit
@@ -35,11 +36,11 @@ class PostsController < ApplicationController
 
 
   def create
-	    @post= Post.new(params.require(:post).permit!)
+	    @post= Post.new(params.require(:post).permit(:title,:user_id,:content,:latitude,:longitude,:url) )
     if @post.save
       redirect_to posts_path 
     else
-      render :new
+      # render :new
     end
   	# new_post = current_user.posts.new(title: params[:post][:title], url: params[:post][:url], content: params[:post][:content], latitude: params[:post][:latitude], longitude: params[:post][:longitude])
 

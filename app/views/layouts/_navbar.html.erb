@@ -30,10 +30,12 @@
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Posts <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a href="/posts">Post Index</a></li>
-                <li><a data-toggle="modal" data-target="#new-post" >Create new post</a></li>
+                <!-- <li><a data-toggle="modal" data-target="#new-post" >Create new post</a></li> -->
             <li>
 <!--               <a href="#" data-toggle="modal" data-target="#new-post">Create a new Post</a>
  -->
+
+          <%= link_to('create post', new_post_path)  %>  
             </li>
 
             <li><a href="#">Something else here</a></li>
