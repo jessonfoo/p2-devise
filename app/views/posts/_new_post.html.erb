@@ -38,7 +38,6 @@
 		<% # f.submit "cancel", :id => 'create_post_cancel', :class => 'btn btn-default' %>
 </div>
 <script type="text/javascript">
-$('.')
 $(document).ready(function(){
 	var geo = $.post( "https://www.googleapis.com/geolocation/v1/geolocate?key=AIzaSyAMIc7OAUicwD3-NJJ0wFmcxLlXD8B_Y5U", function( geo ) {var long = geo.location.lng;var lat = geo.location.lat;
 		$('#create_post_latitude').attr('value',lat);
