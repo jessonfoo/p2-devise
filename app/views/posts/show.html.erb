@@ -1,12 +1,8 @@
-<div class="fade"></div>
 <div class="container">
-	<h1>Post index</h1>
+	<h3>Search</h3>
 	<%= link_to 'new post', new_post_path, class: 'btn btn-default f-right' %>
-	<% 
-console
-	%>
-	<% if @posts %>
-	<% @posts.each do |x| %>
+	<% if @all_posts %>
+	<% @all_posts.each_with_index do |x,i| %>
 
 	<div class="post-container">
 		<div class="row-fluid">

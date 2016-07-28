@@ -12,6 +12,7 @@
 			<div class="row-fluid" style="margin-top:30px;">
 				<div class="col-md-3">
 				  <input type="filepicker" name="url" data-fp-apikey="AMhKGKdexSpC0WsOfZNejz" onchange="$('#create_picture_url').attr('value',event.fpfile.url);$('#upload-preview').attr('src',event.fpfile.url)">
+			<%= f.file_field :i_url %>
 				</div>
 				<div class="col-md-3">
 				  <%= f.submit "Submit picture", :id => 'create_picture_submit', :class => 'btn btn-style'%>

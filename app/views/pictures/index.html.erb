@@ -1,3 +1,4 @@
+<% require 'uri' %>
 <div class="container">
 <h3>Picture index
 	<%= link_to 'new picture', new_picture_path, class: 'btn btn-default f-right' %>
@@ -11,7 +12,7 @@
 		<%= x.title %>		
 	</h3>
 		
-<img src="<%= x.url%>" class="uploaded">
+	<img src="<%= x.url%>" class="uploaded">
 	</div>
 	<div class="row-fluid" style="width:100%;display:inline-flex;">
 	<!-- <a href="/pictures/<%= x.id %>/edit">edit picture</a> -->

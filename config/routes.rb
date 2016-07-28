@@ -15,15 +15,19 @@ Rails.application.routes.draw do
   # patch '/post/:id/update' => 'post#update'
 
   root to: "static#index"
-  devise_for :user
   resources :posts
-	resources :users
+	# resources :users
   resources :pictures
 	resources :static
   # delete '/posts/:id/delete' => 'posts#destroy', as: :post_delete
-  get 'pictures/:id' => 'pictures#show', as: :show
+  devise_for :users
+  # get 'pictures/:id' => 'pictures#show', as: :show
+  # get 'posts/:id' => 'posts#search', as: :show_post
   # get 'pictures/:id/delete' => 'pictures#destroy', as: :pictures_delete
   get 'pictures/:id/delete' => 'pictures#destroy', as: :pictures_delete
+  get 'posts/:id/delete' => 'posts#destroy', as: :posts_delete
+  get 'posts/search' => 'posts#search', as: :search_posts
+  # get 'posts/' => 'posts#search',
 	# get '/user' => 'user#index'
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

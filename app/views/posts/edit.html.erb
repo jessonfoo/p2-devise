@@ -1,4 +1,7 @@
 <h1>Edit Post</h1>
+  <% if @post.url%>
+	  <%= @post.url%>
+	  <% end %>
 <%= form_for @post do |f| %>
   <%= f.text_area :title, :id => 'update_post_input' %>
   <%= f.text_area :content, :id => 'update_post_input' %>

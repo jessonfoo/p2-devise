@@ -17,20 +17,26 @@
         <li class="active">
         </li>
         <% if user_signed_in? %>
-  <li>
-  <%= link_to('Logout', destroy_user_session_path, :method => :delete) %>        
-  </li>
-<% else %>
-  <li>
-  <%= link_to('Login', new_user_session_path)  %>  
-  </li>
-<% end %>
+        <li>
+          <%= link_to('Logout', destroy_user_session_path )%>        
+        </li>
+        <% else %>
+        <li>
+          <%= link_to('Login', new_user_session_path)  %>  
+        </li>
+        <% end %>
+        <div class="fade"></div>
         <li><a href="#"></a></li>
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Posts <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a href="/posts">Post Index</a></li>
-            <li><a href="/posts/new">Create new post</a></li>
+                <li><a data-toggle="modal" data-target="#new-post" >Create new post</a></li>
+            <li>
+<!--               <a href="#" data-toggle="modal" data-target="#new-post">Create a new Post</a>
+ -->
+            </li>
+
             <li><a href="#">Something else here</a></li>
             <li role="separator" class="divider"></li>
             <li><a href="#">Separated link</a></li>
@@ -43,7 +49,8 @@
           <ul class="dropdown-menu">
             <li><a href="/pictures">Pictures Index</a></li>
             <li><a href="/pictures/new">Create new picture</a></li>
-            <li><a href="#">Something else here</a></li>
+<!--             <li><a onclick="$('.create-new-post,.fade').toggleClass('active')"> Create new picture</a></li>
+ -->            
             <li role="separator" class="divider"></li>
             <li><a href="#">Separated link</a></li>
             <li role="separator" class="divider"></li>
@@ -51,25 +58,32 @@
           </ul>
         </li>
       </ul>
-      <form class="navbar-form navbar-left" role="search">
+      <%=form_tag posts_path,class:"navbar-form navbar-left", :method => 'get' do %>
+      <div class="form-group">
+        <%= text_field_tag :query, params[:query], :class => "textfield-post" %>
+        <%= submit_tag "Search", :title => nil, :class => "search-button btn btn-default" %>
+      </div>
+      <% end %>
+<!--       <form class="navbar-form navbar-left" role="search" method="get" action="/posts">
         <div class="form-group">
-          <input type="text" class="form-control" placeholder="Search">
+          <input type="text" name="query" class="form-control" placeholder="Search">
         </div>
         <button type="submit" class="btn btn-default">Submit</button>
       </form>
-      <ul class="nav navbar-nav navbar-right">
-        <li><a href="#">Link</a></li>
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="#">Action</a></li>
-            <li><a href="#">Another action</a></li>
-            <li><a href="#">Something else here</a></li>
-            <li role="separator" class="divider"></li>
-            <li><a href="#">Separated link</a></li>
-          </ul>
-        </li>
+    -->      <ul class="nav navbar-nav navbar-right">
+    <li><a href="#">Link</a></li>
+    <li class="dropdown">
+      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+      <ul class="dropdown-menu">
+        <li><a href="#">Action</a></li>
+        <li><a href="#">Another action</a></li>
+        <li><a href="#">Something else here</a></li>
+        <li role="separator" class="divider"></li>
+        <li><a href="#">Separated link</a></li>
       </ul>
-    </div><!-- /.navbar-collapse -->
-  </div><!-- /.container-fluid -->
+    </li>
+  </ul>
+</div><!-- /.navbar-collapse -->
+</div><!-- /.container-fluid -->
+
 </nav>

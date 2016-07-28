@@ -3,12 +3,18 @@
 		<%= form_for @post do |f| %>
 		<div class="row-fluid">
 			<div class="row-fluid">
+				<img id="upload-preview" src="" style="max-width:100%;">
+			</div>
+			<div class="row-fluid">
 				<!-- <%= f.label :title, class:"col-xs-2 col-xs-offset-3" %> -->
 				<%= f.label :title, class:"col-xs-12 col-xs-offset-0" %>
 			</div>
 			<div class="row-fluid">
 				<!-- <%= f.text_field :title, :id => 'create_post_input', class: "col-xs-6 col-xs-offset-3" %> -->
 				<%= f.text_field :title, :id => 'create_post_input', class: "col-xs-8 col-xs-offset-0" %>
+			</div>
+			<div class="row-fluid">
+				<%= f.hidden_field :url, :id=>'create_picture_url' %>
 			</div>
 		</div>
 
@@ -27,25 +33,36 @@
 <!-- <%= f.hidden_field :url, :id => 'create_post_input' %> -->
 </div>
 </div>
-<div class="row-fluid"></div>
 <div class="row-fluid">
-<div class="col-xs-8" style="margin-top:30px;">
-	
-		<div class="col-md-4">
-				<input type="filepicker" name="post[url]" data-fp-apikey="AMhKGKdexSpC0WsOfZNejz" onchange="$(this).attr('value',event.fpfile.url)">
-			</div>
-			<div class="col-md-4">
-				<%= f.submit "Submit Post", :id => 'create_post_submit', :class => 'btn btn-style'%>
+	<%= f.hidden_field :latitude, :id=>'create_post_latitude' %>
+	<%= f.hidden_field :longitude, :id=>'create_post_longitude' %>
+	<%= f.hidden_field :user_id, :id=>'create_post_owner',value: current_user.id %>
+</div>
+<div class="row-fluid">
+	<div class="col-xs-8" style="margin-top:30px;">
 
-			</div>
-			<div class="col-md-4">
-				<%= f.submit "cancel", :id => 'create_post_cancel', :class => 'btn btn-style' %>
-			</div>
-			<script type="text/javascript" src="//api.filestackapi.com/filestack.js"></script>
+<div class="row-fluid" style="margin-top:30px;">
+				<div class="col-md-3">
+				  <input type="filepicker" name="url" data-fp-apikey="AMhKGKdexSpC0WsOfZNejz" onchange="$('#create_picture_url').attr('value',event.fpfile.url);$('#upload-preview').attr('src',event.fpfile.url)">
+				</div>
+		<div class="col-md-4">
+			<%= f.submit "Submit Post", :id => 'create_post_submit', :class => 'btn btn-style'%>
+
+		</div>
+		<div class="col-md-4">
+			<%= f.submit "cancel", :id => 'create_post_cancel', :class => 'btn btn-style' %>
 		</div>
 	</div>
 </div>
 </div>
+</div>
 <% end %>
 
+		<script type="text/javascript" src="//api.filestackapi.com/filestack.js"></script>
 
+<script type="text/javascript">
+	var geo = $.post( "https://www.googleapis.com/geolocation/v1/geolocate?key=AIzaSyAMIc7OAUicwD3-NJJ0wFmcxLlXD8B_Y5U", function( geo ) {var long = geo.location.lng;var lat = geo.location.lat;
+		$('#create_post_latitude').attr('value',lat);
+		$('#create_post_longitude').attr('value',long);
+	})
+</script>

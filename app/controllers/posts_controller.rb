@@ -1,28 +1,33 @@
 class PostsController < ApplicationController
 	def index
-		all_posts = Post.all
-		posts_array = []
+    if params[:query]
+      @posts = Post.search(params[:query])
+    else
+  		@posts = Post.where(user_id: current_user.id)
+  		posts_array = []
 
-		all_posts.each do |p|
+  		@posts.each do |p|
 
-			p_hash = {
-				id: p.id,
-				title: p.title,
-				url: p.url,
-				content: p.content,
-				latitude: p.latitude,
-				longitude: p.longitude,
-			}
+    			p_hash = {
+    				id: p.id,
+    				title: p.title,
+    				url: p.url,
+    				content: p.content,
+    				latitude: p.latitude,
+    				longitude: p.longitude,
+    			}
 
 
-			posts_array << p_hash
-		end
+  			posts_array << p_hash
+  		end
+    end
     # render json: posts_array
-    @posts= Post.all
+    # @posts= Post.all
   end
 
   def new
   	@post = Post.new
+    # render json: @post 
   end
   def edit
   	@post = Post.find(params[:id])
@@ -30,12 +35,12 @@ class PostsController < ApplicationController
 
 
   def create
-	    @post= Post.new(params.require(:post).permit(:title,:content))
+	    @post= Post.new(params.require(:post).permit!)
     # add a conditional that will redirect to the new vampire's show page if it saves successfully, but will render the new form if it doesn't
     if @post.save
       redirect_to posts_path 
     else
-      render :new_post
+      render :post
     end
   	# new_post = current_user.posts.new(title: params[:post][:title], url: params[:post][:url], content: params[:post][:content], latitude: params[:post][:latitude], longitude: params[:post][:longitude])
 
@@ -55,7 +60,28 @@ class PostsController < ApplicationController
 
   def show
   	@post = Post.find(params[:id])
-  	if post
+    if params[:search]
+      @posts = Post.search(params[:query])
+    else
+      @posts = Post.all
+      posts_array = []
+
+      @posts.each do |p|
+
+          p_hash = {
+            id: p.id,
+            title: p.title,
+            url: p.url,
+            content: p.content,
+            latitude: p.latitude,
+            longitude: p.longitude,
+          }
+
+
+        posts_array << p_hash
+      end
+    end
+  	if @post
   		render json: post
   	else
   		render json: {errors: post.errors}

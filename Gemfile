@@ -50,6 +50,8 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'devise'
 gem 'hirb'
 gem 'mustache'
+gem 'handlebars'
+gem 'stache'
 gem 'awesome_print'
 gem 'bootstrap-sass'
 gem 'omniauth'
