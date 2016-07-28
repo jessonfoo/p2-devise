@@ -39,7 +39,7 @@ class PostsController < ApplicationController
     if @post.save
       redirect_to posts_path 
     else
-      render :post
+      render :new
     end
   	# new_post = current_user.posts.new(title: params[:post][:title], url: params[:post][:url], content: params[:post][:content], latitude: params[:post][:latitude], longitude: params[:post][:longitude])
 
@@ -103,6 +103,7 @@ class PostsController < ApplicationController
   	@post = Post.find(params[:id])
   	if @post
   		@post.destroy
+      redirect_to posts_path 
   	else
   		render json: {errors: "post does not exist"}
   	end

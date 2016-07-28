@@ -1,14 +1,15 @@
 <div class="fade"></div>
-<div class="container">
 	<h1>Posts by you and your friends</h1>
 	<%= link_to 'new post', new_post_path, class: 'btn btn-default f-right' %>
+<div class="container grid all-posts-grid" id="wrapper">
+<div id="columns">
 	<% 
 console
 	%>
 	<% if @posts %>
 	<% @posts.each do |x| %>
 
-	<div class="post-container">
+	<div class="post-container item">
 		<div class="row-fluid">
 			<h3 class="col-xs-4 pic-title">
 				<%= x.title %>		
@@ -23,7 +24,7 @@ console
 
 			<%= link_to 'edit post',edit_post_path(x.id), class: "btn btn-gzn f-l" %>
 
-			<%= link_to 'delete post',posts_delete_path(x.id), class: "btn btn-gzn f-r" %>
+			<%= link_to 'delete post',posts_delete_path(x.id), class: "btn btn-gzn f-r", :method => :delete %>
 		</div>
 
 <div class="col-xs-12">
@@ -33,4 +34,5 @@ console
 	</div>
 	<% end %>
 <% end %>	
+</div>
 </div>

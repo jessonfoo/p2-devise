@@ -19,13 +19,13 @@ Rails.application.routes.draw do
 	# resources :users
   resources :pictures
 	resources :static
-  # delete '/posts/:id/delete' => 'posts#destroy', as: :post_delete
   devise_for :users
   # get 'pictures/:id' => 'pictures#show', as: :show
   # get 'posts/:id' => 'posts#search', as: :show_post
   # get 'pictures/:id/delete' => 'pictures#destroy', as: :pictures_delete
-  get 'pictures/:id/delete' => 'pictures#destroy', as: :pictures_delete
-  get 'posts/:id/delete' => 'posts#destroy', as: :posts_delete
+  # get 'pictures/:id/delete' => 'pictures#destroy', as: :pictures_delete
+  delete 'posts/:id' => 'posts#destroy', as: :posts_delete
+  # delete '/post/:id/delete' => 'posts#destroy', as: :post_delete
   get 'posts/search' => 'posts#search', as: :search_posts
   # get 'posts/' => 'posts#search',
 	# get '/user' => 'user#index'
