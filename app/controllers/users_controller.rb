@@ -1,4 +1,5 @@
-class UsersController < Devise::UserController
+class UsersController < ApplicationController
+#  def index
 # before_action :authenticate_user!	
 	# def index
 	# 	if current_user
