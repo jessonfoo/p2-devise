@@ -36,7 +36,6 @@ class PostsController < ApplicationController
 
   def create
 	    @post= Post.new(params.require(:post).permit!)
-    # add a conditional that will redirect to the new vampire's show page if it saves successfully, but will render the new form if it doesn't
     if @post.save
       redirect_to posts_path 
     else
