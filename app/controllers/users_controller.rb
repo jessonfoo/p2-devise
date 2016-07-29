@@ -1,20 +1,28 @@
 class UsersController < ApplicationController
-#  def index
 # before_action :authenticate_user!	
-	# def index
-	# 	if current_user
-	# 		@user = current_user
-	# 	end
-	# 	before_action :authenticate_user!
-	# 	redirect_to root_path
- #  end
+	def index
+		# if current_user
+		@users = User.all
+		# @user = User.find(current_user.id)
+		# redirect_to user_profile_path @user
 
-	# def show
-	# 	if current_user
-	# 		@user = current_user
-	# 	end
-	# 	redirect_to root_path
-	# end
+			# before_action :authenticate_user!
+			# redirect_to root_path
+  end
+
+	def show
+		@user = User.find(params[:id])
+
+		# if @user
+		# 	# render 'index'
+		# 	# render 'show'
+		# else
+		# 	render json: {errors: @user.errors}	
+		# end
+        # format.html { render :new }
+        # format.json { render json: @friendship.errors, status: :unprocessable_entity }
+		# redirect_to root_path
+	end
 	# def edit
 
  #  end

@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  console
   # get 'static/index'
   # get '/post/new' => 'post#new', as :new_post
 
@@ -19,14 +20,20 @@ Rails.application.routes.draw do
 	# resources :users
   resources :pictures
 	resources :static
-  devise_for :users
+  devise_for :user
+  resources :friendships
+  # get 'users/:id' => 'users#show', as: :show_user
+  get 'users/' => 'users#index', as: :users
+  get 'user/:id' => 'users#show', as: :show_user
   # get 'pictures/:id' => 'pictures#show', as: :show
-  # get 'posts/:id' => 'posts#search', as: :show_post
+  get 'posts/:id' => 'posts#search', as: :show_post
   # get 'pictures/:id/delete' => 'pictures#destroy', as: :pictures_delete
   # get 'pictures/:id/delete' => 'pictures#destroy', as: :pictures_delete
+  # post '/friendships' => 'friendships#create'
   delete 'posts/:id' => 'posts#destroy', as: :posts_delete
   # delete '/post/:id/delete' => 'posts#destroy', as: :post_delete
-  get 'posts/search' => 'posts#search', as: :search_posts
+  # get 'posts/:query' => 'posts#search', as: :search_posts
+  get 'posts/' => 'posts#search', as: :search_posts
   # get 'posts/' => 'posts#search',
 	# get '/user' => 'user#index'
 

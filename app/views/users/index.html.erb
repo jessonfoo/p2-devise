@@ -1,0 +1,7 @@
+
+<% for friend in @users %>
+
+<%= link_to "Add #{friend.username} as a Friend", friendships_path(:friend_id => friend.id),:action => 'create', :method => :post %>
+<br>
+<% end %>
+

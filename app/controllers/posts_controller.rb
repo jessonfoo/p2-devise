@@ -1,33 +1,17 @@
 class PostsController < ApplicationController
+  # console
+  before_action :authenticate_user!
 	def index
     if params[:query]
       @posts = Post.search(params[:query])
     else
   		@posts = Post.where(user_id: current_user.id)
-  		posts_array = []
-
-  		@posts.each do |p|
-
-    			p_hash = {
-    				id: p.id,
-    				title: p.title,
-    				url: p.url,
-    				content: p.content,
-    				latitude: p.latitude,
-    				longitude: p.longitude,
-    			}
-
-
-  			posts_array << p_hash
-  		end
-    end
-    # render json: posts_array
-    # @posts= Post.all
+		end
   end
-
+  
   def new
-  	@post = Post.new
-    render :new
+  	@post = Post.new 
+    render 'posts/new'
     # render json: @post 
   end
   def edit
@@ -36,62 +20,33 @@ class PostsController < ApplicationController
 
 
   def create
-	    @post= Post.new(params.require(:post).permit(:title,:user_id,:content,:latitude,:longitude,:url) )
+    @post= Post.new(post_params)
+    @post.user = current_user
+    # @post = current_user.posts.build(post_params)
     if @post.save
       redirect_to posts_path 
     else
-      # render :new
+      render :new
     end
-  	# new_post = current_user.posts.new(title: params[:post][:title], url: params[:post][:url], content: params[:post][:content], latitude: params[:post][:latitude], longitude: params[:post][:longitude])
-
-  	# if params[:post]
-  	# 	new_post = current_user.posts.new(title: params[:post][:title], url: params[:post][:url], content: params[:post][:content], latitude: params[:post][:latitude], longitude: params[:post][:longitude], advert: params[:post][:advert])
-  	# 	new_post.save
-  	# 	session[:post_id] = new_post.id
-  	# 	render json: new_post
-  	# else
-  	# 	new_post = current_user.posts.new(title: params[:post][:title], url: params[:post][:url], content: params[:post][:content], latitude: params[:post][:latitude], longitude: params[:post][:longitude])
-
-  	# 	new_post.save
-  	# 	session[:post_id] = new_post.id
-  	# 	render json: new_post
-  	# end
   end
 
   def show
-  	@post = Post.find(params[:id])
-    if params[:search]
-      @posts = Post.search(params[:query])
+    if params[:query]
+      @post = Post.search(params[:query])
     else
-      @posts = Post.all
-      posts_array = []
-
-      @posts.each do |p|
-
-          p_hash = {
-            id: p.id,
-            title: p.title,
-            url: p.url,
-            content: p.content,
-            latitude: p.latitude,
-            longitude: p.longitude,
-          }
-
-
-        posts_array << p_hash
+      @post = Post.find(params[:id])
+      if @post
+        render json: @post
+      else
+        render json: {errors: @post.errors}
       end
     end
-  	if @post
-  		render json: post
-  	else
-  		render json: {errors: post.errors}
-  	end
   end
 
   def update
   	@post = Post.find(params[:id])
     #assuming params
-    if @post.update_attributes(params[:post].permit!)
+    if @post.update_attributes(post_params)
     	@post.save
     	redirect_to posts_path
     else
@@ -104,9 +59,14 @@ class PostsController < ApplicationController
   	@post = Post.find(params[:id])
   	if @post
   		@post.destroy
-      redirect_to posts_path 
   	else
   		render json: {errors: "post does not exist"}
   	end
+  end
+    private
+
+  def post_params
+    # params.require(:post).permit!
+    params.require(:post).permit(:title,:user_id,:content,:latitude,:longitude,:url)
   end
 end
