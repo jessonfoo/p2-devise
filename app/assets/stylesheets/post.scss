@@ -70,8 +70,10 @@
     color:white !important;
     &:hover{
       background: #4A9BCC !important;
+    },
+    &:visited {
+      color: #a7a7a7;
     }
-
   }
 }
 .field label{

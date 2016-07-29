@@ -20,7 +20,7 @@ body{
 	  height: 100vh;
 	  top:0;
 	  left:0;
-	  opacity: 0.7;
+	  opacity: 0.5;
 	  z-index: -1;
 	  position: fixed;
 	background-attachment: fixed;
@@ -32,7 +32,8 @@ body{
 		color:black;
 	}
 	a {
-		color:#badbff;
+		// color:#badbff;
+		font-weight: bold;
 	}
 }
 input#query {
