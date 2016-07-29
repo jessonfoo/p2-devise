@@ -4,7 +4,12 @@ class PostsController < ApplicationController
     if params[:query]
       @posts = Post.search(params[:query])
     else
-  		@posts = Post.where(user_id: current_user.id)
+      @posts = Post.find_by_sql "select * from posts where user_id in(select friend_id from friendships where user_id=#{current_user.id})"
+
+  		# @posts = Post.where(user_id: current_user.id)
+      # @posts = Post.joins(:user, :user=>[:friends]).where(friend_id:, current_user.id) 
+      # @posts =  Post.where("user_id IN (?)", current_user.friendships);
+      # @posts = Post.joins(:user, :user=>[:friendships]).where(user_id)
 		end
   end
   
@@ -35,7 +40,7 @@ class PostsController < ApplicationController
     else
       @post = Post.find(params[:id])
       if @post
-        render json: @post
+        render 'show'
       else
         render json: {errors: @post.errors}
       end
@@ -61,6 +66,7 @@ class PostsController < ApplicationController
   	else
   		render json: {errors: "post does not exist"}
   	end
+      redirect_to posts_path
   end
     private
 
