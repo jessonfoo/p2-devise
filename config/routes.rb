@@ -23,7 +23,7 @@ Rails.application.routes.draw do
   resources :friendships
   # get 'users/:id' => 'users#show', as: :show_user
   get 'users/' => 'users#index', as: :users
-  get 'user/:id' => 'users#show', as: :show_user
+  get 'users/:id' => 'users#show', as: :show_user
   # get 'pictures/:id' => 'pictures#show', as: :show
   get 'posts/:id' => 'posts#search', as: :show_post
   # get 'pictures/:id/delete' => 'pictures#destroy', as: :pictures_delete
