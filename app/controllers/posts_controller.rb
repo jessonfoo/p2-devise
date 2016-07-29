@@ -1,5 +1,4 @@
 class PostsController < ApplicationController
-  # console
   before_action :authenticate_user!
 	def index
     if params[:query]

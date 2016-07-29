@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  console
   # get 'static/index'
   # get '/post/new' => 'post#new', as :new_post
 
