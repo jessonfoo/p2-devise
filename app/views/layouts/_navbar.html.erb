@@ -39,11 +39,12 @@
         <% if user_signed_in? %>
             <li> <%= link_to('profile', show_user_path(current_user.id))  %> </li>
             <li> <%= link_to('Find Friends', users_path)  %> </li>
-            <li><a href="/pictures/new">Create new picture</a></li>
   
         <% else %>
-          <%= link_to('Profile', new_user_session_path)  %>  
+        <li>
+          <%= link_to('Profile', new_user_session_path)  %>  </li>
       <% end %>
+            <li><a href="/pictures/new">Create new picture</a></li>
             <li role="separator" class="divider"></li>
             <li><a href="#">Separated link</a></li>
             <li role="separator" class="divider"></li>
