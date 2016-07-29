@@ -4,6 +4,49 @@
 // Place all the styles related to the Pictures controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+p,h1,h2,h3,h4,h5,li,div,span,body{
+  font-family:roboto;
+  // font-family:lato;
+}
+body{
+  background:url('/img/bg.jpg') no-repeat center center / cover;
+  background-attachment: fixed;
+  .bg-overlay {
+    background: black;
+    width: 100vw;
+    height: 100vh;
+    top:0;
+    left:0;
+    opacity: 0.5;
+    z-index: -1;
+    position: fixed;
+  background-attachment: fixed;
+  }
+}
+.primary-container{
+  color:white;
+  .field{
+    color:black;
+  }
+  a {
+    // color:#badbff;
+    font-weight: bold;
+  }
+}
+input#query {
+  padding: 1px 3px 4px;
+}
+a.dropdown-toggle:hover,li.dropdown.open,ul.dropdown-menu,ul.dropdown-menu:hover{
+  background: #4A9BCC !important;
+}
+.navbar-default {
+  background-color: #1D83C1 !important;
+  a{
+    color:white !important;
+
+  }
+  border-color: #1D83C1 !important;
+}
 .uploaded {
   // max-width: 100%;
   width: 100%;
