@@ -35,7 +35,9 @@
 			<%= link_to 'edit post',edit_post_path(@post.id), class: "btn f-l" %>
 </div>
 <div class="col-md-3 col-md-offset-7" style="padding-right:0px;">
+<% if @post.user_id == current_user.id %>
 			<%= link_to 'delete post',posts_delete_path(@post.id), class: "btn f-r", method: :delete%>
+			<% end %>
 </div>
 
 		</div>
@@ -63,7 +65,7 @@
         height: 100%;
       }
     </style>
-d
+
 <script>
 
 
@@ -97,6 +99,9 @@ var image = '/img/m.png';
 </div>
 </div>
 </div>
+
+
+
 <script>
       function initMap() {
         var map = new google.maps.Map(document.getElementById('map'), {
