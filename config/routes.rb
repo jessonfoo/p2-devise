@@ -15,7 +15,6 @@ Rails.application.routes.draw do
   # patch '/post/:id/update' => 'post#update'
 
   root to: "static#index"
-  get '/' => 'static#index'
   resources :posts
 	# resources :users
   resources :pictures

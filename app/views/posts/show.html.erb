@@ -1,8 +1,4 @@
 <div class="container">
-<div class="row-fluid">
-  <div id="gmap"></div>
-</div>
-
 	<% if @post %>
 	<h3>Currently Viewing post by <%= User.find(@post.user_id).email%><%= link_to 'new post', new_post_path, class: 'btn btn-default f-right' %> </h3>
 
